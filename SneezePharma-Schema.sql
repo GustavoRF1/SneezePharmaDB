@@ -15,7 +15,7 @@ CREATE TABLE Customers(
 	Nome VARCHAR(50) NOT NULL,
 	DataNascimento DATE NOT NULL,
 	UltimaCompra DATE,
-	DataCadastro TIMESTAMP NOT NULL,
+	DataCadastro DATETIME DEFAULT GETDATE(),
 	IDSituacao INT NOT NULL
 )
 
@@ -39,7 +39,7 @@ CREATE TABLE Suppliers(
 	Pais VARCHAR(40) NOT NULL,
 	DataAbertura DATE NOT NULL,
 	UltimoFornecimento DATETIME,
-	DataCadastro TIMESTAMP NOT NULL,
+	DataCadastro DATETIME DEFAULT GETDATE(),
 	IDSituacao INT NOT NULL
 )
 
@@ -82,23 +82,28 @@ CREATE TABLE Ingredients(
 	IDIngrediente INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	Nome VARCHAR(50) NOT NULL,
 	UltimaCompra DATE,
-	DataCadastro TIMESTAMP NOT NULL,
+	DataCadastro DATETIME DEFAULT GETDATE(),
 	IDSituacao INT NOT NULL
+);
+
+CREATE Table Category(
+	IDCategoria INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	Categoria VARCHAR(30) NOT NULL UNIQUE
 );
 
 CREATE TABLE Medicine(
 	CDB VARCHAR(13) NOT NULL PRIMARY KEY,
 	Nome VARCHAR(50) NOT NULL,
-	Categoria VARCHAR(50) NOT NULL,
+	IDCategoria INT NOT NULL,
 	ValorVenda DECIMAL(8,2) NOT NULL,
 	UltimaVenda DATE,
-	DataCadastro TIMESTAMP NOT NULL,
+	DataCadastro DATETIME DEFAULT GETDATE(),
 	IDSituacao INT NOT NULL
 );
 
 CREATE TABLE Produce(
 	IDProducao INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	DataProducao TIMESTAMP NOT NULL,
+	DataProducao DATETIME DEFAULT GETDATE(),
 	CDB VARCHAR(13) NOT NULL,
 	Quantidade INT NOT NULL,
 	ValorUnitario DECIMAL(8,2) NOT NULL,
@@ -145,7 +150,8 @@ ALTER TABLE Ingredients
 ADD FOREIGN KEY (IDSituacao) REFERENCES Situation (IDSituacao)
 
 ALTER TABLE Medicine
-ADD FOREIGN KEY (IDSituacao) REFERENCES Situation (IDSituacao)
+ADD FOREIGN KEY (IDSituacao) REFERENCES Situation (IDSituacao),
+FOREIGN KEY (IDCategoria) REFERENCES Category (IDCategoria)
 
 ALTER TABLE Produce
 ADD FOREIGN KEY (CDB) REFERENCES Medicine (CDB)
