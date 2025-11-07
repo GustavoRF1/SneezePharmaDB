@@ -75,7 +75,9 @@ CREATE TABLE PurchaseItem(
 	IDItemCompra INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	IDCompra INT NOT NULL,
 	IDIngrediente INT NOT NULL,
-	ValorUnitario DECIMAL(8,2) NOT NULL
+	Quantidade INT NOT NULL,
+	ValorUnitario DECIMAL(8,2) NOT NULL,
+	TotalItem DECIMAL(15,2) NOT NULL
 );
 
 CREATE TABLE Ingredients(
@@ -106,8 +108,6 @@ CREATE TABLE Produce(
 	DataProducao DATETIME DEFAULT GETDATE(),
 	CDB VARCHAR(13) NOT NULL,
 	Quantidade INT NOT NULL,
-	ValorUnitario DECIMAL(8,2) NOT NULL,
-	TotalItem DECIMAL(15,2) NOT NULL
 );
 
 CREATE TABLE ProduceItem(
