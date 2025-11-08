@@ -52,7 +52,7 @@ CREATE TABLE Sales(
 	IDVenda INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	DataVenda DATETIME DEFAULT GETDATE(),
 	IDCliente INT NOT NULL,
-	ValorTotal DECIMAL NOT NULL,
+	ValorTotal DECIMAL(15,2),
 );
 
 CREATE TABLE SalesItems(
@@ -60,15 +60,14 @@ CREATE TABLE SalesItems(
 	IDVenda INT NOT NULL,
 	CDB VARCHAR(13) NOT NULL,
 	Quantidade INT NOT NULL,
-	ValorUnitario DECIMAL(8,2) NOT NULL,
-	TotalItem DECIMAL (15,2) NOT NULL
+	TotalItem DECIMAL (15,2)
 );
 
 CREATE TABLE Purchases(
 	IDCompra INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	IDFornecedor INT NOT NULL,
 	DataCompra DATETIME DEFAULT GETDATE(),
-	ValorTotal DECIMAL(15,2) NOT NULL
+	ValorTotal DECIMAL(15,2)
 );
 
 CREATE TABLE PurchaseItem(
@@ -77,7 +76,7 @@ CREATE TABLE PurchaseItem(
 	IDIngrediente INT NOT NULL,
 	Quantidade INT NOT NULL,
 	ValorUnitario DECIMAL(8,2) NOT NULL,
-	TotalItem DECIMAL(15,2) NOT NULL
+	TotalItem DECIMAL(15,2)
 );
 
 CREATE TABLE Ingredients(

@@ -138,83 +138,83 @@ INSERT INTO ProduceItem (IDProducao, IDIngrediente, QuantidadePrincipio) VALUES
 
 -- Inserindo Venda
 
-INSERT INTO Sales (IDCliente, ValorTotal) VALUES
-(1, 32)
+INSERT INTO Sales (IDCliente) VALUES
+(1)
 
-INSERT INTO Sales (IDCliente, ValorTotal) VALUES
-(2, 40)
+INSERT INTO Sales (IDCliente) VALUES
+(2)
 
-INSERT INTO Sales (IDCliente, ValorTotal) VALUES
-(5, 70)
+INSERT INTO Sales (IDCliente) VALUES
+(5)
 
-INSERT INTO Sales (IDCliente, ValorTotal) VALUES
-(2, 81)
+INSERT INTO Sales (IDCliente) VALUES
+(2)
 
-INSERT INTO Sales (IDCliente, ValorTotal) VALUES
-(5, 99)
+INSERT INTO Sales (IDCliente) VALUES
+(5)
 
 -- Inserindo Item da Venda
 
+SELECT * FROM Sales
 SELECT * FROM SalesItems
-SELECT * FROM Medicine
 
-INSERT INTO SalesItems(IDVenda, CDB, Quantidade, ValorUnitario, TotalItem) VALUES
-(1, '7891000055123', 1, 20, 72)
+INSERT INTO SalesItems(IDVenda, CDB, Quantidade) VALUES
+(1, '7891000055123', 1)
 
-INSERT INTO SalesItems(IDVenda, CDB, Quantidade, ValorUnitario, TotalItem) VALUES
-(2, '7891234567895', 2, 20, 32)
+INSERT INTO SalesItems(IDVenda, CDB, Quantidade) VALUES
+(2, '7891234567895', 2)
 
-INSERT INTO SalesItems(IDVenda, CDB, Quantidade, ValorUnitario, TotalItem) VALUES
-(3, '7891910000197', 5, 20, 40)
+INSERT INTO SalesItems(IDVenda, CDB, Quantidade) VALUES
+(3, '7891910000197', 5)
 
-INSERT INTO SalesItems(IDVenda, CDB, Quantidade, ValorUnitario, TotalItem) VALUES
-(4, '7894900011517', 7, 20, 70)
+INSERT INTO SalesItems(IDVenda, CDB, Quantidade) VALUES
+(4, '7894900011517', 7)
 
-INSERT INTO SalesItems(IDVenda, CDB, Quantidade, ValorUnitario, TotalItem) VALUES
-(4, '7894900011517', 7, 20, 70)
+INSERT INTO SalesItems(IDVenda, CDB, Quantidade) VALUES
+(4, '7894900011517', 7)
 
-INSERT INTO SalesItems(IDVenda, CDB, Quantidade, ValorUnitario, TotalItem) VALUES
-(5, '7896004000406', 1, 20, 81)
+INSERT INTO SalesItems(IDVenda, CDB, Quantidade) VALUES
+(5, '7896004000406', 11)
 
-INSERT INTO SalesItems(IDVenda, CDB, Quantidade, ValorUnitario, TotalItem) VALUES
-(5, '7894900011517', 1, 20, 81)
+INSERT INTO SalesItems(IDVenda, CDB, Quantidade) VALUES
+(5, '7894900011517', 1)
 
-INSERT INTO SalesItems(IDVenda, CDB, Quantidade, ValorUnitario, TotalItem) VALUES
-(5, '7891910000197', 1, 20, 81)
+INSERT INTO SalesItems(IDVenda, CDB, Quantidade) VALUES
+(5, '7891910000197', 1)
 
-INSERT INTO SalesItems(IDVenda, CDB, Quantidade, ValorUnitario, TotalItem) VALUES
-(5, '7891234567895', 1, 20, 81)
+INSERT INTO SalesItems(IDVenda, CDB, Quantidade) VALUES
+(5, '7891234567895', 1)
 
 -- Inserindo Compra
 
-INSERT INTO Purchases (IDFornecedor, ValorTotal) VALUES
-(1, 90)
+INSERT INTO Purchases (IDFornecedor) VALUES
+(1)
 
-INSERT INTO Purchases (IDFornecedor, ValorTotal) VALUES
-(2, 30)
+INSERT INTO Purchases (IDFornecedor) VALUES
+(2)
 
-INSERT INTO Purchases (IDFornecedor, ValorTotal) VALUES
-(3, 502)
+INSERT INTO Purchases (IDFornecedor) VALUES
+(3)
 
-INSERT INTO Purchases (IDFornecedor, ValorTotal) VALUES
-(2, 75)
+INSERT INTO Purchases (IDFornecedor) VALUES
+(2)
 
-INSERT INTO Purchases (IDFornecedor, ValorTotal) VALUES
-(3, 63)
+INSERT INTO Purchases (IDFornecedor) VALUES
+(3)
 
 -- Inserindo Item Compra
 
-INSERT INTO PurchaseItem (IDCompra, IDIngrediente, Quantidade, ValorUnitario, TotalItem) VALUES
-(1, 1, 50, 10, 50)
+INSERT INTO PurchaseItem (IDCompra, IDIngrediente, Quantidade, ValorUnitario) VALUES
+(1, 1, 50, 10)
 
-INSERT INTO PurchaseItem (IDCompra, IDIngrediente, Quantidade, ValorUnitario, TotalItem) VALUES
-(1, 3, 70, 10, 50)
+INSERT INTO PurchaseItem (IDCompra, IDIngrediente, Quantidade, ValorUnitario) VALUES
+(1, 3, 70, 10)
 
-INSERT INTO PurchaseItem (IDCompra, IDIngrediente, Quantidade, ValorUnitario, TotalItem) VALUES
-(1, 4, 60, 10, 50)
+INSERT INTO PurchaseItem (IDCompra, IDIngrediente, Quantidade, ValorUnitario) VALUES
+(1, 4, 60, 10)
 
-INSERT INTO PurchaseItem (IDCompra, IDIngrediente, Quantidade, ValorUnitario, TotalItem) VALUES
-(2, 4, 40, 10, 150)
+INSERT INTO PurchaseItem (IDCompra, IDIngrediente, Quantidade, ValorUnitario) VALUES
+(2, 4, 40, 10)
 
-INSERT INTO PurchaseItem (IDCompra, IDIngrediente, Quantidade, ValorUnitario, TotalItem) VALUES
-(4, 3, 55, 10, 50)
+INSERT INTO PurchaseItem (IDCompra, IDIngrediente, Quantidade, ValorUnitario) VALUES
+(4, 3, 55, 10)
