@@ -14,7 +14,7 @@ CREATE TABLE Customers(
 	CPF NUMERIC NOT NULL UNIQUE,
 	Nome VARCHAR(50) NOT NULL,
 	DataNascimento DATE NOT NULL,
-	UltimaCompra DATE,
+	UltimaCompra DATETIME,
 	DataCadastro DATETIME DEFAULT GETDATE(),
 	IDSituacao INT NOT NULL
 )
@@ -82,7 +82,7 @@ CREATE TABLE PurchaseItem(
 CREATE TABLE Ingredients(
 	IDIngrediente INT NOT NULL PRIMARY KEY IDENTITY(1,1),
 	Nome VARCHAR(50) NOT NULL,
-	UltimaCompra DATE,
+	UltimaCompra DATETIME,
 	DataCadastro DATETIME DEFAULT GETDATE(),
 	IDSituacao INT NOT NULL
 );
@@ -97,7 +97,7 @@ CREATE TABLE Medicine(
 	Nome VARCHAR(50) NOT NULL,
 	IDCategoria INT NOT NULL,
 	ValorVenda DECIMAL(8,2) NOT NULL,
-	UltimaVenda DATE,
+	UltimaVenda DATETIME,
 	DataCadastro DATETIME DEFAULT GETDATE(),
 	IDSituacao INT NOT NULL
 );

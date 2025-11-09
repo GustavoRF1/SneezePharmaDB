@@ -153,6 +153,21 @@ BEGIN
 END
 GO
 
+CREATE TRIGGER trg_PurchaseItem_TotalItem
+ON PurchaseItem
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    UPDATE PurchaseItem
+
+    SET
+        TotalItem = inserted.Quantidade * inserted.ValorUnitario
+    FROM PurchaseItem
+    INNER JOIN inserted ON PurchaseItem.IDItemCompra = inserted.IDItemCompra
+END
+GO
+
 CREATE TRIGGER trg_SalesItems_Sales
 ON SalesItems
 AFTER INSERT
@@ -168,7 +183,7 @@ BEGIN
         FROM SalesItems
         GROUP BY IDVenda
     ) AS si ON s.IDVenda = si.IDVenda
-    WHERE s.IDVenda IN (SELECT DISTINCT IDVenda FROM inserted);
+    JOIN (SELECT DISTINCT IDVenda FROM inserted) AS i ON s.IDVenda = i.IDVenda;
 END;
 GO
 
@@ -180,29 +195,41 @@ BEGIN
     SET NOCOUNT ON;
 
     UPDATE p
-    SET p.ValorTotal = pui.TotalPorCompra
+    SET p.ValorTotal = (
+        SELECT SUM(pui.TotalItem)
+        FROM PurchaseItem pui
+        WHERE pui.IDCompra = p.IDCompra
+    )
     FROM Purchases p
-    INNER JOIN (
-        SELECT IDCompra, SUM(TotalItem) AS TotalPorCompra
-        FROM PurchaseItem
-        GROUP BY IDCompra
-    ) AS pui ON p.IDCompra = pui.IDCompra
-    WHERE pui.IDCompra IN (SELECT DISTINCT IDCompra FROM inserted);
+    INNER JOIN (SELECT DISTINCT IDCompra FROM inserted) AS i
+        ON p.IDCompra = i.IDCompra;
 END;
 GO
 
-CREATE TRIGGER trg_PurchaseItem_Purchases
-ON PurchaseItem
+CREATE TRIGGER trg_Sales_Customers
+ON Sales
 AFTER INSERT
 AS
 BEGIN
-    SET NOCOUNT ON;
-    UPDATE Purchases
-    SET ValorTotal = (
-        SELECT SUM(ValorTotal)
-        FROM PurchaseItem
-        WHERE PurchaseItem.IDCompra = Purchases.IDCompra
-        )
-    WHERE IDCompra IN (SELECT DISTINCT IDCompra FROM inserted)
+    SET NOCOUNT ON
+
+    UPDATE c
+    SET c.UltimaCompra = i.DataVenda
+    FROM Customers c
+    JOIN inserted i ON c.IDCliente = i.IDCliente
+END
+GO
+
+CREATE TRIGGER trg_Purchases_Suppliers
+ON Purchases
+AFTER INSERT
+AS
+BEGIN
+    SET NOCOUNT ON
+
+    UPDATE s
+    SET s.UltimoFornecimento = i.DataCompra
+    FROM Suppliers s
+    JOIN inserted i ON s.IDFornecedor = i.IDFornecedor
 END
 GO
